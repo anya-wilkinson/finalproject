@@ -2,7 +2,7 @@
 
 ## What will (likely) be the title of your project?
 
-DNA Sequence Analyzor (DNASA)
+DNA Sequence Analyzer (DNASA)
 
 ## In just a sentence or two, summarize your project. (E.g., "A website that lets you buy and sell stocks.")
 
@@ -28,7 +28,7 @@ the basic DNA analysis: length, nucleotide count, GC%. if i can't figure out the
 
 ### In a sentence (or list of features), define a BETTER outcome for your final project. I.e., what do you THINK you can accomplish before the final project's deadline?
 
-the amino acid translation (this is not as simple as the hawaiian translator because you don't know the starting position in the amino acid code, unlike the hawaiian word which starts at the first character. you have to make three translations and then figure out which is the most likely to be correct.) also, maybe reading my files for the DNA sequences instead of just inputting a single sequence.
+the amino acid translation (this is not as simple as the hawaiian translator because you don't know the starting position in the amino acid code (three nucleotides), unlike the hawaiian word which starts at the first character. you have to make three translations (for each possible starting position) and then figure out which is the most likely to be correct.) also, maybe reading my files for the DNA sequences instead of just inputting a single sequence.
 
 ### In a sentence (or list of features), define a BEST outcome for your final project. I.e., what do you HOPE to accomplish before the final project's deadline?
 
