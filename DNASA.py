@@ -4,6 +4,7 @@
 testsequence = "ACGTACGTACGT"
 
 aminoacids = {}
+aminoSLC = {'isoleucine':'I', 'Leucine':'L', 'Valine':'V', 'Phenylalanine':'F', 'Methionine':'M', 'Cysteine':'C', 'Alanine':'A', 'Glycine':'G', 'Proline':'P', 'Threonine':'T', 'Serine':'S', 'Tyrosine':'Y', 'Tryptophan':'W', 'Glutamine':'Q', 'Asparagine':'N', 'Histidine':'H', 'Glutamic acid':'E', 'Aspartic acid':'D', 'Lysine':'K', 'Arginine':'R', 'Stop':'Stop'}
 nucleotides = ['A', 'C', 'G', 'T']
 nucleotidecount = {'A':0, 'C':0, 'G':0, 'T':0}
 compliment = {'A':'T', 'T':'A', 'C':'G', 'G':'C'}
