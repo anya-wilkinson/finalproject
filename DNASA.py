@@ -2,8 +2,8 @@
 
 testsequence = "ACGTACGTACGT"
 
-aminoacids = {}
-aminoSLC = {'isoleucine':'I', 'Leucine':'L', 'Valine':'V', 'Phenylalanine':'F', 'Methionine':'M', 'Cysteine':'C', 'Alanine':'A', 'Glycine':'G', 'Proline':'P', 'Threonine':'T', 'Serine':'S', 'Tyrosine':'Y', 'Tryptophan':'W', 'Glutamine':'Q', 'Asparagine':'N', 'Histidine':'H', 'Glutamic acid':'E', 'Aspartic acid':'D', 'Lysine':'K', 'Arginine':'R', 'Stop':'Stop'}
+aminoacids = {"UUU":"Phenylalanine", "UUC":"Phenylalanine", "UUA":"Leucine", "UUG":"Leucine", "UCU":"Serine", "UCC":"Serine", "UCA":"Serine", "UCG":"Serine", "UAU":"Tyrosine", "UAC":"Tyrosine", 'UAA':'STOP', 'UAG':'STOP', 'UGU':'Cysteine', 'UGC':'Cysteine','UGA':'STOP', 'UGG':'Tryptophan', 'CUU':'Leucine', 'CUC':'Leucine', 'CUA':'Leucine', 'CUG':'Leucine', 'CCU':'Proline', 'CCC':'Proline', 'CCA':'Proline', 'CCG':'Proline', 'CAU':'Histidine', 'CAC':'Histidine', 'CAA':'Glutamine', 'CAG':'Glutamine', 'CGU':'Arginine', 'CGC':'Arginine', 'CGA':'Arginine', 'CGG':'Arginine', 'AUU':'Isoleucine', 'AUC':'Isoleucine', 'AUA':'Isoleucine', 'AUG':'(START) Methionine', 'ACU':'Threonine', 'ACC':'Threonine', 'ACA':'Threonine', 'ACG':'Threonine', 'AUU':'Asparagine', 'AUC':'Asparagine', 'AAA':'Lysine', 'AAG':'Lysine', 'AGU':'Serine', 'AGC':'Serine', 'AGA':'Arginine', 'AGG':'Arginine', 'GUU':'Valine', 'GUC':'Valine', 'GUA':'Valine', 'GUG':'Valine', 'GCU':'Alanine', 'GCC':'Alanine', 'GCA':'Alanine', 'GCG':'Alanine', 'GAU':'Aspartic Acid', 'GAC':'Aspartic Acid', 'GAA':'Glutamic Acid', 'GAG':'Glutamic Acid', 'GGU':'Glycine', 'GGC':'Glycine', 'GGA':'Glycine', 'GGG':'Glycine'}
+aminoSLC = {'Isoleucine':'I', 'Leucine':'L', 'Valine':'V', 'Phenylalanine':'F', 'Methionine':'M', 'Cysteine':'C', 'Alanine':'A', 'Glycine':'G', 'Proline':'P', 'Threonine':'T', 'Serine':'S', 'Tyrosine':'Y', 'Tryptophan':'W', 'Glutamine':'Q', 'Asparagine':'N', 'Histidine':'H', 'Glutamic acid':'E', 'Aspartic acid':'D', 'Lysine':'K', 'Arginine':'R', 'Stop':'Stop'}
 nucleotides = ['A', 'C', 'G', 'T']
 nucleotidecount = {'A':0, 'C':0, 'G':0, 'T':0}
 compliment = {'A':'T', 'T':'A', 'C':'G', 'G':'C'}
@@ -34,27 +34,55 @@ def complimentarysequence(sequence):
     return newseq    
 
 def rnatemplate(sequence):
-    #assuming the sequence inputted is the template strand, return the corresponding RNA sequence
+    #return the corresponding RNA sequence to the DNA
+    #requires knowledge on if the DNA is template or coding
     #same as complimentarysequence but uses uracil instead of thymine
     newseq = ""
-    for char in sequence:
-        if char == 'A':
-            newseq = newseq + 'U'
-        if char == 'T':
-            newseq = newseq + 'A'
-        if char == 'G':
-            newseq = newseq + 'C'
-        if char == 'C':
-            newseq = newseq + 'G'
-    print("mRNA sequence:", newseq)
+    strand = input("Is this DNA sequence the template or coding strand?")
+    strand.lower()
+    if strand == "coding":
+        for char in sequence:
+            if char == 'A':
+                newseq = newseq + 'U'
+            if char == 'T':
+                newseq = newseq + 'A'
+            if char == 'G':
+                newseq = newseq + 'C'
+            if char == 'C':
+                newseq = newseq + 'G'
+    if strand == "template":
+        for char in sequence:
+            if char == 'T':
+                newseq = newseq + 'U'
+            else:
+                newseq = newseq + char
+    print("mRNA sequence from", strand, "strand:", newseq)
     return newseq
     
 def translation(sequence):
-    #dna to amino acid
+    #rna to amino acid
+    #must run rnatemplate first
+    #try position 1 first
+    count1 = 0
+    count2 = 0
+    count3 = 0
+    #the counts are to keep track of the number of amino acids in each translation, assuming that the correct 
+    while index < (len(sequence)):
+        
+        if index < (len(sequence)-2):
+            if sequence[index] + sequence[index+1] + sequence[index+2] in aminoacids:
+                output = output + double_vowels.get((string[index] + string[index+1]))
+                output = output + '-'
+                index = index + 2
+
+
+
+
+    
     pass
 
-#sequence = input("Enter a DNA sequence.")
+sequence = input("Enter a DNA sequence.")
 #basicanalysis(sequence)
 #testing changes to see how github works
-#rnatemplate(sequence)
+rnatemplate(sequence)
 #complimentarysequence(sequence)
