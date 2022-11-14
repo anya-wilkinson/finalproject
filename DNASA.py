@@ -37,27 +37,27 @@ def rnatemplate(sequence):
     #return the corresponding RNA sequence to the DNA
     #requires knowledge on if the DNA is template or coding
     #same as complimentarysequence but uses uracil instead of thymine
-    newseq = ""
-    strand = input("Is this DNA sequence the template or coding strand?")
+    rnaseq = ""
+    strand = input("Is this DNA sequence the template or coding strand? If you aren't sure, write 'coding'.")
     strand.lower()
     if strand == "coding":
         for char in sequence:
             if char == 'A':
-                newseq = newseq + 'U'
+                rnaseq = rnaseq + 'U'
             if char == 'T':
-                newseq = newseq + 'A'
+                rnaseq = rnaseq + 'A'
             if char == 'G':
-                newseq = newseq + 'C'
+                rnaseq = rnaseq + 'C'
             if char == 'C':
-                newseq = newseq + 'G'
+                rnaseq = rnaseq + 'G'
     if strand == "template":
         for char in sequence:
             if char == 'T':
-                newseq = newseq + 'U'
+                rnaseq = rnaseq + 'U'
             else:
-                newseq = newseq + char
-    print("mRNA sequence from", strand, "strand:", newseq)
-    return newseq
+                rnaseq = rnaseq + char
+    print("mRNA sequence from", strand, "strand:", rnaseq)
+    return rnaseq
     
 def translation(sequence):
     #rna to amino acid
@@ -82,6 +82,7 @@ def translation(sequence):
     pass
 
 sequence = input("Enter a DNA sequence.")
+sequence = sequence.upper()
 #basicanalysis(sequence)
 #testing changes to see how github works
 rnatemplate(sequence)
