@@ -14,7 +14,7 @@ def basicanalysis(sequence):
     print("BP count:", length, "nucleotides")
     #nucleotide count
     for char in sequence:
-        if char in nucleotides:
+        if char in nucleotides: #sometimes N is included if the base in unknown
             nucleotidecount[char] += 1
     print("Nucleotide count:", nucleotidecount)
     #GC%
@@ -29,15 +29,8 @@ def complimentarysequence(sequence):
     #give complementary DNA sequence
     newseq = ""
     for char in sequence:
-        if char == 'A':
-            newseq = newseq + 'T'
-        if char == 'T':
-            newseq = newseq + 'A'
-        if char == 'G':
-            newseq = newseq + 'C'
-        if char == 'C':
-            newseq = newseq + 'G'
-    print(newseq)
+        newseq = newseq + compliment[char]
+    print("Complimentary sequence:", newseq)
     return newseq    
 
 def rnatemplate(sequence):
@@ -53,14 +46,15 @@ def rnatemplate(sequence):
             newseq = newseq + 'C'
         if char == 'C':
             newseq = newseq + 'G'
-    print(newseq)
+    print("mRNA sequence:", newseq)
     return newseq
     
 def translation(sequence):
     #dna to amino acid
     pass
 
-
-#basicanalysis("AGGTGTTGGATTCAAAGCTGGTGTCAAGGATTACCGATTGACCTATTACACCCCCGAATACAAGACCAAAGATACCGACATCTTGGCAGCCTTCCGGATGACCCCACAACCCGGGGTACCAGCTGAGGAAGCCGGAGCTGCGGTAGCTGCGGAATCCTCCACGGGTA")
+#sequence = input("Enter a DNA sequence.")
+#basicanalysis(sequence)
 #testing changes to see how github works
-rnatemplate("AGAGCTCT")
+#rnatemplate(sequence)
+#complimentarysequence(sequence)
