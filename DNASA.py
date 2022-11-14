@@ -1,4 +1,3 @@
-
 #Anya Wilkinson
 
 testsequence = "ACGTACGTACGT"
@@ -24,6 +23,7 @@ def basicanalysis(sequence):
     GC = G + C
     proportion = (GC / length)*100
     print("GC%:", proportion, "%")
+    return length, nucleotidecount, GC
     
 def complimentarysequence(sequence):
     #give complementary DNA sequence
