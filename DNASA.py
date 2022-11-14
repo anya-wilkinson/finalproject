@@ -27,7 +27,18 @@ def basicanalysis(sequence):
     
 def complimentarysequence(sequence):
     #give complementary DNA sequence
-    pass    
+    newseq = ""
+    for char in sequence:
+        if char == 'A':
+            newseq = newseq + 'T'
+        if char == 'T':
+            newseq = newseq + 'A'
+        if char == 'G':
+            newseq = newseq + 'C'
+        if char == 'C':
+            newseq = newseq + 'G'
+    print(newseq)
+    return newseq    
     
 def translation(sequence):
     #dna to amino acid
@@ -36,3 +47,4 @@ def translation(sequence):
 
 #basicanalysis("AGGTGTTGGATTCAAAGCTGGTGTCAAGGATTACCGATTGACCTATTACACCCCCGAATACAAGACCAAAGATACCGACATCTTGGCAGCCTTCCGGATGACCCCACAACCCGGGGTACCAGCTGAGGAAGCCGGAGCTGCGGTAGCTGCGGAATCCTCCACGGGTA")
 #testing changes to see how github works
+complimentarysequence("AGAGCTCT")
