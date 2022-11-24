@@ -2,8 +2,8 @@
 
 testsequence = "ACGTACGTACGT"
 
-aminoacids = {"UUU":"Phenylalanine", "UUC":"Phenylalanine", "UUA":"Leucine", "UUG":"Leucine", "UCU":"Serine", "UCC":"Serine", "UCA":"Serine", "UCG":"Serine", "UAU":"Tyrosine", "UAC":"Tyrosine", 'UAA':'STOP', 'UAG':'STOP', 'UGU':'Cysteine', 'UGC':'Cysteine','UGA':'STOP', 'UGG':'Tryptophan', 'CUU':'Leucine', 'CUC':'Leucine', 'CUA':'Leucine', 'CUG':'Leucine', 'CCU':'Proline', 'CCC':'Proline', 'CCA':'Proline', 'CCG':'Proline', 'CAU':'Histidine', 'CAC':'Histidine', 'CAA':'Glutamine', 'CAG':'Glutamine', 'CGU':'Arginine', 'CGC':'Arginine', 'CGA':'Arginine', 'CGG':'Arginine', 'AUU':'Isoleucine', 'AUC':'Isoleucine', 'AUA':'Isoleucine', 'AUG':'(START) Methionine', 'ACU':'Threonine', 'ACC':'Threonine', 'ACA':'Threonine', 'ACG':'Threonine', 'AUU':'Asparagine', 'AUC':'Asparagine', 'AAA':'Lysine', 'AAG':'Lysine', 'AGU':'Serine', 'AGC':'Serine', 'AGA':'Arginine', 'AGG':'Arginine', 'GUU':'Valine', 'GUC':'Valine', 'GUA':'Valine', 'GUG':'Valine', 'GCU':'Alanine', 'GCC':'Alanine', 'GCA':'Alanine', 'GCG':'Alanine', 'GAU':'Aspartic Acid', 'GAC':'Aspartic Acid', 'GAA':'Glutamic Acid', 'GAG':'Glutamic Acid', 'GGU':'Glycine', 'GGC':'Glycine', 'GGA':'Glycine', 'GGG':'Glycine'}
-aminoSLC = {'Isoleucine':'I', 'Leucine':'L', 'Valine':'V', 'Phenylalanine':'F', 'Methionine':'M', 'Cysteine':'C', 'Alanine':'A', 'Glycine':'G', 'Proline':'P', 'Threonine':'T', 'Serine':'S', 'Tyrosine':'Y', 'Tryptophan':'W', 'Glutamine':'Q', 'Asparagine':'N', 'Histidine':'H', 'Glutamic acid':'E', 'Aspartic acid':'D', 'Lysine':'K', 'Arginine':'R', 'Stop':'Stop'}
+aminoacids = {"UUU":"Phenylalanine", "UUC":"Phenylalanine", "UUA":"Leucine", "UUG":"Leucine", "UCU":"Serine", "UCC":"Serine", "UCA":"Serine", "UCG":"Serine", "UAU":"Tyrosine", "UAC":"Tyrosine", 'UAA':'STOP', 'UAG':'STOP', 'UGU':'Cysteine', 'UGC':'Cysteine','UGA':'STOP', 'UGG':'Tryptophan', 'CUU':'Leucine', 'CUC':'Leucine', 'CUA':'Leucine', 'CUG':'Leucine', 'CCU':'Proline', 'CCC':'Proline', 'CCA':'Proline', 'CCG':'Proline', 'CAU':'Histidine', 'CAC':'Histidine', 'CAA':'Glutamine', 'CAG':'Glutamine', 'CGU':'Arginine', 'CGC':'Arginine', 'CGA':'Arginine', 'CGG':'Arginine', 'AUU':'Isoleucine', 'AUC':'Isoleucine', 'AUA':'Isoleucine', 'AUG':'Methionine', 'ACU':'Threonine', 'ACC':'Threonine', 'ACA':'Threonine', 'ACG':'Threonine', 'AUU':'Asparagine', 'AUC':'Asparagine', 'AAA':'Lysine', 'AAG':'Lysine', 'AGU':'Serine', 'AGC':'Serine', 'AGA':'Arginine', 'AGG':'Arginine', 'GUU':'Valine', 'GUC':'Valine', 'GUA':'Valine', 'GUG':'Valine', 'GCU':'Alanine', 'GCC':'Alanine', 'GCA':'Alanine', 'GCG':'Alanine', 'GAU':'Aspartic Acid', 'GAC':'Aspartic Acid', 'GAA':'Glutamic Acid', 'GAG':'Glutamic Acid', 'GGU':'Glycine', 'GGC':'Glycine', 'GGA':'Glycine', 'GGG':'Glycine'}
+aminoSLC = {'Isoleucine':'I', 'Leucine':'L', 'Valine':'V', 'Phenylalanine':'F', 'Methionine':'M', 'Cysteine':'C', 'Alanine':'A', 'Glycine':'G', 'Proline':'P', 'Threonine':'T', 'Serine':'S', 'Tyrosine':'Y', 'Tryptophan':'W', 'Glutamine':'Q', 'Asparagine':'N', 'Histidine':'H', 'Glutamic acid':'E', 'Aspartic acid':'D', 'Lysine':'K', 'Arginine':'R', 'STOP':'Stop'}
 nucleotides = ['A', 'C', 'G', 'T']
 nucleotidecount = {'A':0, 'C':0, 'G':0, 'T':0}
 compliment = {'A':'T', 'T':'A', 'C':'G', 'G':'C'}
@@ -62,11 +62,13 @@ def rnatemplate(sequence):
 def translation(sequence):
     #rna to amino acid
     #must run rnatemplate first
-    #try position 1 first
-    count1 = 0
-    count2 = 0
-    count3 = 0
-    #the counts are to keep track of the number of amino acids in each translation, assuming that the correct 
+    position1 = [sequence[i:i+3] for i in range(0, len(sequence),3)] #https://stackoverflow.com/questions/9475241/split-string-every-nth-character
+    sequence2 = sequence[1:]
+    position2 = [sequence2[i:i+3] for i in range(0, len(sequence2),3)]
+    sequence3 = sequence[2:]
+    position3 = [sequence3[i:i+3] for i in range(0, len(sequence3),3)]
+    #the positions are to keep track of the different possible starting positions, from the 0-2 character of the rna string
+    '''
     while index < (len(sequence)):
         
         if index < (len(sequence)-2):
@@ -74,17 +76,27 @@ def translation(sequence):
                 output = output + double_vowels.get((string[index] + string[index+1]))
                 output = output + '-'
                 index = index + 2
+    '''                
+    #position 1
+    aminotranslation1 = []
+    for codon in position1:
+        if codon in aminoacids:
+            aminotranslation1.append(aminoacids[codon])
+        else:
+            aminotranslation1.append('_')
+    #[sequence[i:i+3] for i in range(0, len(sequence),3)] #https://stackoverflow.com/questions/9475241/split-string-every-nth-character
 
-
-
-
+    print(position1)
+    print(position2)
+    print(position3)
+    print(aminotranslation1)
     
     pass
-    return aminotranslation
+    return aminotranslation1
 
 def aminoSLC(sequence):
     SLC = ""
-    for acid in aminotranslation:
+    for acid in aminotranslation1:
         SLC = SLC + aminoSLC[acid]        
     return SLC
 
@@ -92,5 +104,7 @@ sequence = input("Enter a DNA sequence.")
 sequence = sequence.upper()
 #basicanalysis(sequence)
 #testing changes to see how github works
-rnatemplate(sequence)
+x= rnatemplate(sequence)
 #complimentarysequence(sequence)
+y= translation(x)
+#aminoSLC(y)
