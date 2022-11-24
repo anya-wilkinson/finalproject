@@ -80,6 +80,13 @@ def translation(sequence):
 
     
     pass
+    return aminotranslation
+
+def aminoSLC(sequence):
+    SLC = ""
+    for acid in aminotranslation:
+        SLC = SLC + aminoSLC[acid]        
+    return SLC
 
 sequence = input("Enter a DNA sequence.")
 sequence = sequence.upper()
