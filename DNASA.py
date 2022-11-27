@@ -34,7 +34,7 @@ def complimentarysequence(sequence):
     return newseq    
 
 def rnatemplate(sequence):
-    #return the corresponding RNA sequence to the DNA
+    #return the corresponding mRNA sequence to the DNA
     #requires knowledge on if the DNA is template or coding
     #same as complimentarysequence but uses uracil instead of thymine
     rnaseq = ""
@@ -67,7 +67,8 @@ def translation(sequence):
     position2 = [sequence2[i:i+3] for i in range(0, len(sequence2),3)]
     sequence3 = sequence[2:]
     position3 = [sequence3[i:i+3] for i in range(0, len(sequence3),3)]
-    #the positions are to keep track of the different possible starting positions, from the 0-2 character of the rna string
+    #the positions are to keep track of the different possible starting positions, from the 0-2 character of the rna string.
+    #this is because when sequencing the DNA, you don't know where the codons are supposed to be starting from / what position they are in to be read. 
     '''
     while index < (len(sequence)):
         
@@ -85,19 +86,35 @@ def translation(sequence):
         else:
             aminotranslation1.append('_')
     #[sequence[i:i+3] for i in range(0, len(sequence),3)] #https://stackoverflow.com/questions/9475241/split-string-every-nth-character
+    #position 2
+    aminotranslation2 = []
+    for codon in position2:
+        if codon in aminoacids:
+            aminotranslation2.append(aminoacids[codon])
+        else:
+            aminotranslation2.append('_')
+    #position 3
+    aminotranslation3 = []
+    for codon in position3:
+        if codon in aminoacids:
+            aminotranslation3.append(aminoacids[codon])
+        else:
+            aminotranslation3.append('_')
 
-    print(position1)
-    print(position2)
-    print(position3)
-    print(aminotranslation1)
+    #to pick which position to use:
+    #note to self: here try to read the stuff to see if any of the three reads have a start codon (met) or stop codon
+    #maybe just return that one as the most likely but still return all three ???
+    #use my PLH data to test which reads are the most successful most of the time
+    
     
     pass
     return aminotranslation1
 
 def aminoSLC(sequence):
     SLC = ""
-    for acid in aminotranslation1:
+    for acid in sequence:
         SLC = SLC + aminoSLC[acid]        
+    print(SLC)
     return SLC
 
 sequence = input("Enter a DNA sequence.")
@@ -107,4 +124,4 @@ sequence = sequence.upper()
 x= rnatemplate(sequence)
 #complimentarysequence(sequence)
 y= translation(x)
-#aminoSLC(y)
+aminoSLC(y)
