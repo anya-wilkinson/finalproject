@@ -3,7 +3,7 @@
 testsequence = "ACGTACGTACGT"
 
 aminoacids = {"UUU":"Phenylalanine", "UUC":"Phenylalanine", "UUA":"Leucine", "UUG":"Leucine", "UCU":"Serine", "UCC":"Serine", "UCA":"Serine", "UCG":"Serine", "UAU":"Tyrosine", "UAC":"Tyrosine", 'UAA':'STOP', 'UAG':'STOP', 'UGU':'Cysteine', 'UGC':'Cysteine','UGA':'STOP', 'UGG':'Tryptophan', 'CUU':'Leucine', 'CUC':'Leucine', 'CUA':'Leucine', 'CUG':'Leucine', 'CCU':'Proline', 'CCC':'Proline', 'CCA':'Proline', 'CCG':'Proline', 'CAU':'Histidine', 'CAC':'Histidine', 'CAA':'Glutamine', 'CAG':'Glutamine', 'CGU':'Arginine', 'CGC':'Arginine', 'CGA':'Arginine', 'CGG':'Arginine', 'AUU':'Isoleucine', 'AUC':'Isoleucine', 'AUA':'Isoleucine', 'AUG':'Methionine', 'ACU':'Threonine', 'ACC':'Threonine', 'ACA':'Threonine', 'ACG':'Threonine', 'AUU':'Asparagine', 'AUC':'Asparagine', 'AAA':'Lysine', 'AAG':'Lysine', 'AGU':'Serine', 'AGC':'Serine', 'AGA':'Arginine', 'AGG':'Arginine', 'GUU':'Valine', 'GUC':'Valine', 'GUA':'Valine', 'GUG':'Valine', 'GCU':'Alanine', 'GCC':'Alanine', 'GCA':'Alanine', 'GCG':'Alanine', 'GAU':'Aspartic Acid', 'GAC':'Aspartic Acid', 'GAA':'Glutamic Acid', 'GAG':'Glutamic Acid', 'GGU':'Glycine', 'GGC':'Glycine', 'GGA':'Glycine', 'GGG':'Glycine'}
-aminoSLC = {'Isoleucine':'I', 'Leucine':'L', 'Valine':'V', 'Phenylalanine':'F', 'Methionine':'M', 'Cysteine':'C', 'Alanine':'A', 'Glycine':'G', 'Proline':'P', 'Threonine':'T', 'Serine':'S', 'Tyrosine':'Y', 'Tryptophan':'W', 'Glutamine':'Q', 'Asparagine':'N', 'Histidine':'H', 'Glutamic acid':'E', 'Aspartic acid':'D', 'Lysine':'K', 'Arginine':'R', 'STOP':'Stop'}
+aminoSLC = {'Isoleucine':'I', 'Leucine':'L', 'Valine':'V', 'Phenylalanine':'F', 'Methionine':'M', 'Cysteine':'C', 'Alanine':'A', 'Glycine':'G', 'Proline':'P', 'Threonine':'T', 'Serine':'S', 'Tyrosine':'Y', 'Tryptophan':'W', 'Glutamine':'Q', 'Asparagine':'N', 'Histidine':'H', 'Glutamic Acid':'E', 'Aspartic Acid':'D', 'Lysine':'K', 'Arginine':'R', 'STOP':'Stop', '_':'_'}
 nucleotides = ['A', 'C', 'G', 'T']
 nucleotidecount = {'A':0, 'C':0, 'G':0, 'T':0}
 compliment = {'A':'T', 'T':'A', 'C':'G', 'G':'C'}
@@ -38,7 +38,7 @@ def rnatemplate(sequence):
     #requires knowledge on if the DNA is template or coding
     #same as complimentarysequence but uses uracil instead of thymine
     rnaseq = ""
-    strand = input("Is this DNA sequence the template or coding strand? If you aren't sure, write 'coding'.")
+    strand = input("Is this DNA sequence the template or coding strand? If you aren't sure, write 'template'.")
     strand.lower()
     if strand == "coding":
         for char in sequence:
@@ -105,12 +105,19 @@ def translation(sequence):
     #note to self: here try to read the stuff to see if any of the three reads have a start codon (met) or stop codon
     #maybe just return that one as the most likely but still return all three ???
     #use my PLH data to test which reads are the most successful most of the time
+
+    x = acidtoSLC(aminotranslation1)
+    y = acidtoSLC(aminotranslation2)
+    z = acidtoSLC(aminotranslation3)
+    print("MSPCLSTPGRGGLDFVKS")
     
-    
-    pass
+    if 'Stop' in z:
+        pass
+
+
     return aminotranslation1
 
-def aminoSLC(sequence):
+def acidtoSLC(sequence):
     SLC = ""
     for acid in sequence:
         SLC = SLC + aminoSLC[acid]        
@@ -124,4 +131,4 @@ sequence = sequence.upper()
 x= rnatemplate(sequence)
 #complimentarysequence(sequence)
 y= translation(x)
-aminoSLC(y)
+#aminoSLC(y)
