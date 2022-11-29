@@ -109,6 +109,10 @@ def translation(sequence):
     x = acidtoSLC(aminotranslation1)
     y = acidtoSLC(aminotranslation2)
     z = acidtoSLC(aminotranslation3)
+
+    print(x)
+    print(y)
+    print(z)
     
     if 'Stop' in z and 'Stop' in y:
         finalaminotranslation = x
@@ -129,7 +133,7 @@ def acidtoSLC(sequence):
     return SLC
 
 sequence = input("Enter a DNA sequence.")
-reference = input("Enter the given amino acid SLC for testing the function lol)
+reference = input("Enter the given amino acid SLC for testing the function.")
 sequence = sequence.upper()
 basicanalysis(sequence)
 complimentarysequence(sequence)
