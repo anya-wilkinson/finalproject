@@ -109,26 +109,31 @@ def translation(sequence):
     x = acidtoSLC(aminotranslation1)
     y = acidtoSLC(aminotranslation2)
     z = acidtoSLC(aminotranslation3)
-    print("MSPCLSTPGRGGLDFVKS")
     
-    if 'Stop' in z:
-        pass
-
-
-    return aminotranslation1
+    if 'Stop' in z and 'Stop' in y:
+        finalaminotranslation = x
+    elif 'Stop' in z and 'Stop' in x:
+        finalaminotranslation = y
+    elif 'Stop' in x and 'Stop' in y:
+        finalaminotranslation = z
+    else:
+        finalaminotranslation = [x,y,z]
+    print(finalaminotranslation)
+    return finalaminotranslation
 
 def acidtoSLC(sequence):
     SLC = ""
     for acid in sequence:
         SLC = SLC + aminoSLC[acid]        
-    print(SLC)
+    #print(SLC)
     return SLC
 
 sequence = input("Enter a DNA sequence.")
+reference = input("Enter the given amino acid SLC for testing the function lol)
 sequence = sequence.upper()
-#basicanalysis(sequence)
-#testing changes to see how github works
+basicanalysis(sequence)
+complimentarysequence(sequence)
 x= rnatemplate(sequence)
-#complimentarysequence(sequence)
-y= translation(x)
-#aminoSLC(y)
+print(reference)
+translation(x)
+
