@@ -141,3 +141,8 @@ x= rnatemplate(sequence)
 print(reference)
 translation(x)
 
+
+#plan: substitute with file reading and writing since the blast api didn't work out
+#create two files in my folder with the github stuff
+#one with dna strands, the other blank to write in
+
