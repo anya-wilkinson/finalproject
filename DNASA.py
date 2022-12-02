@@ -10,35 +10,35 @@ compliment = {'A':'T', 'T':'A', 'C':'G', 'G':'C'}
 def basicanalysis(sequence):
     #length
     length = len(sequence)
-    print("BP count:", length, "nucleotides")
+    #print("BP count:", length, "nucleotides")
     #nucleotide count
     nucleotidecount = {'A':0, 'C':0, 'G':0, 'T':0}
     for char in sequence:
         if char in nucleotides: #sometimes N is included if the base in unknown
             nucleotidecount[char] += 1
-    print("Nucleotide count:", nucleotidecount)
+    #print("Nucleotide count:", nucleotidecount)
     #GC%
     G = nucleotidecount.get('G')
     C = nucleotidecount.get('C')
     GC = G + C
     proportion = (GC / length)*100
-    print("GC%:", proportion, "%")
+    #print("GC%:", proportion, "%")
     return length, nucleotidecount, GC
     
 def complimentarysequence(sequence):
     #give complementary DNA sequence
     newseq = ""
     for char in sequence:
-        newseq = newseq + compliment[char]
-    print("Complimentary sequence:", newseq)
+        if char in compliment:
+            newseq = newseq + compliment[char]
+    #print("Complimentary sequence:", newseq)
     return newseq    
 
-def rnatemplate(sequence):
+def rnatemplate(sequence, strand):
     #return the corresponding mRNA sequence to the DNA
     #requires knowledge on if the DNA is template or coding
     #same as complimentarysequence but uses uracil instead of thymine
     rnaseq = ""
-    strand = input("Is this DNA sequence the template or coding strand? If you aren't sure, write 'template'.")
     strand.lower()
     if strand == "coding":
         for char in sequence:
@@ -56,7 +56,7 @@ def rnatemplate(sequence):
                 rnaseq = rnaseq + 'U'
             else:
                 rnaseq = rnaseq + char
-    print("mRNA sequence from", strand, "strand:", rnaseq)
+    #print("mRNA sequence from", strand, "strand:", rnaseq)
     return rnaseq
     
 def translation(sequence):
@@ -109,10 +109,6 @@ def translation(sequence):
     x = acidtoSLC(aminotranslation1)
     y = acidtoSLC(aminotranslation2)
     z = acidtoSLC(aminotranslation3)
-
-    print(x)
-    print(y)
-    print(z)
     
     if 'Stop' in z and 'Stop' in y:
         finalaminotranslation = x
@@ -121,8 +117,15 @@ def translation(sequence):
     elif 'Stop' in x and 'Stop' in y:
         finalaminotranslation = z
     else:
-        finalaminotranslation = [x,y,z]
-    print(finalaminotranslation)
+        if 'Stop' in z:
+            finalaminotranslation = [x,y]
+        elif 'Stop' in y:
+            finalaminotranslation = [x,z]
+        elif 'Stop' in x:
+            finalaminotranslation = [y,z]
+        else:
+            finalaminotranslation = [x,y,z]
+    #print(finalaminotranslation)
     return finalaminotranslation
 
 def acidtoSLC(sequence):
@@ -144,21 +147,28 @@ x= rnatemplate(sequence)
 print(reference)
 translation(x)
 '''
+
+########################
+#nonfunctions start here
+
 data = open("PythonSampleDNA.csv.csv", 'r') 
 sample = data.readlines()
 
 output = open("PythonSampleOutput.csv.csv", 'w')
 
-#create a header here, made with help from runestone
-output.write("Original Sequence,length,Adenine,Cytosine,Guanine,Thymine,GC,complimentary sequence, mRNA, amino acid, possibility 2 (if applicable), possibility 3 (if applicable)")
+#create a header for the file here
+output.write("Original Sequence,Length,Adenine,Cytosine,Guanine,Thymine,GC,Complimentary DNA Seq, mRNA, Amino Acid, AA Possibility 2 (if applicable), AA Possibility 3 (if applicable)")
 output.write('\n')
+print("Welcome to DNASA, the DNA Sequence Analyzer!")
+strand = input("Are your DNA sequences template or coding strands? If unsure, write 'template'.")
+print("Analyzing in progress...")
 
-for seq in sample[0:9]:
-    seq = seq[:-8]
+for seq in sample[:]:
+    seq = seq[:-8] #get rid of the PLH label that i added to keep track of my sample DNA data
 
     l, m, n = basicanalysis(seq)
     o = complimentarysequence(seq)
-    p = rnatemplate(seq)
+    p = rnatemplate(seq, strand)
     q = translation(p)
     l = str(l)
     m = (str(m))[1:-1]
@@ -180,18 +190,12 @@ for seq in sample[0:9]:
     output.write(q)
 
     output.write('\n')
-    '''
-    output.write(complimentarysequence(sequence))
-    x= rnatemplate(sequence)
-    output.write(x)
-    output.write(translation(x))
-    '''
+    
+
+print("Thank you for using DNASA. Your DNA Analysis is ready in your chosen output file.")
+    
 output.close()
 data.close()
-
-#plan: substitute with file reading and writing since the blast api didn't work out
-#create two files in my folder with the github stuff
-#one with dna strands, the other blank to write in
 
 
 
