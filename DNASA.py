@@ -150,25 +150,34 @@ sample = data.readlines()
 output = open("PythonSampleOutput.csv.csv", 'w')
 
 #create a header here, made with help from runestone
-
+output.write("Original Sequence,length,Adenine,Cytosine,Guanine,Thymine,GC,complimentary sequence, mRNA, amino acid, possibility 2 (if applicable), possibility 3 (if applicable)")
+output.write('\n')
 
 for seq in sample[0:9]:
-    seq = seq [:-8]
+    seq = seq[:-8]
 
     l, m, n = basicanalysis(seq)
     o = complimentarysequence(seq)
     p = rnatemplate(seq)
     q = translation(p)
     l = str(l)
-    m = str(m)
-    n = str(n)
-    
-    
+    m = (str(m))[1:-1]
+    n = str(n) + "%"
+    q = str(q)
+
+    output.write(seq)
+    output.write(',')
     output.write(l)
     output.write(',')
+    output.write(m)
+    output.write(',')
+    output.write(n)
+    output.write(',')
     output.write(o)
-
-
+    output.write(',')
+    output.write(p)
+    output.write(',')
+    output.write(q)
 
     output.write('\n')
     '''
