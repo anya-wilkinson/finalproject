@@ -149,14 +149,27 @@ sample = data.readlines()
 
 output = open("PythonSampleOutput.csv.csv", 'w')
 
+#create a header here, made with help from runestone
+
+
 for seq in sample[0:9]:
     seq = seq [:-8]
-    s = complimentarysequence(seq)
+
+    l, m, n = basicanalysis(seq)
+    o = complimentarysequence(seq)
+    p = rnatemplate(seq)
+    q = translation(p)
+    l = str(l)
+    m = str(m)
+    n = str(n)
     
-    #print(seq)
-    pass
     
-    output.write(s)
+    output.write(l)
+    output.write(',')
+    output.write(o)
+
+
+
     output.write('\n')
     '''
     output.write(complimentarysequence(sequence))
