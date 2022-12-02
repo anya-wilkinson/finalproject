@@ -132,17 +132,25 @@ def acidtoSLC(sequence):
     #print(SLC)
     return SLC
 
+
+
+'''
 sequence = input("Enter a DNA sequence.")
-reference = input("Enter the given amino acid SLC for testing the function.")
+#reference = input("Enter the given amino acid SLC for testing the function.")
 sequence = sequence.upper()
 basicanalysis(sequence)
 complimentarysequence(sequence)
 x= rnatemplate(sequence)
 print(reference)
 translation(x)
-
+'''
+data = open("PythonSampleDNA.csv", 'r')
+sampleDNA = data.readlines()
+output = open("PythonSampleOutput.csv", 'w')
 
 #plan: substitute with file reading and writing since the blast api didn't work out
 #create two files in my folder with the github stuff
 #one with dna strands, the other blank to write in
+
+
 
