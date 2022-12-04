@@ -149,7 +149,7 @@ translation(x)
 '''
 
 ########################
-#nonfunctions start here
+#nonfunction and the actual stuff starts here
 
 data = open("PythonSampleDNA.csv.csv", 'r') 
 sample = data.readlines()
@@ -166,6 +166,7 @@ print("Analyzing in progress...")
 for seq in sample[:]:
     seq = seq[:-8] #get rid of the PLH label that i added to keep track of my sample DNA data
 
+    #run analysis and assign it to variables, also making everything a str so it can be written in a file
     l, m, n = basicanalysis(seq)
     o = complimentarysequence(seq)
     p = rnatemplate(seq, strand)
@@ -175,6 +176,7 @@ for seq in sample[:]:
     n = str(n) + "%"
     q = str(q)
 
+    #writing the analysis in the file
     output.write(seq)
     output.write(',')
     output.write(l)
@@ -189,8 +191,8 @@ for seq in sample[:]:
     output.write(',')
     output.write(q)
 
+    #new line to seperate for each DNA sequence
     output.write('\n')
-    
 
 print("Thank you for using DNASA. Your DNA Analysis is ready in your chosen output file.")
     
