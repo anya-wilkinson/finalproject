@@ -13,5 +13,5 @@ Since there are three possible reads for an amino acid (starting the sequence at
 If a 'stop' codon is included in any of the amino acid chains, that chain is not included in the written file since it can be ruled out as an unlikely option for the actual amino acid chain. 
 This gives the researcher the more likely amino acid sequences, usually 1 or 2 but occasoinally 3 possibilities. 
 
-Originally, DNASA was going to connect to an outside database called BLAST (from NIH/NCBI), but that was outside of my capabilities and also required a lot of other modules for python that I didn't know how to use. I had trouble locating an updated or usable API, and also all of the documentation I could track down was in other coding languages (like perl). 
-To make up for this, I added the file reading and writing capabilities to DNASA. I had to learn how to write files, since we didn't practice that much in class, and we had focused on file reading.
+Originally, DNASA was going to connect to an outside database called BLAST (from NIH/NCBI), but that ended up being outside of my capabilities and also required a lot of other modules for python that I didn't know how to use. I had trouble locating an updated or usable API for BLAST, and also all of the documentation I could track down was in other coding languages (like perl???). 
+To make up for this, I added the file reading and writing capabilities to DNASA. I had to learn how to write files, since we didn't practice that much in class, and we had focused on file reading. 
