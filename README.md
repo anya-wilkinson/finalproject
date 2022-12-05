@@ -1,6 +1,8 @@
 # finalproject
 DNASA: DNA Sequence Analyzer
 
+Video walk-through here: https://youtu.be/j8CEIDgjCF4
+
 The purpose of DNASA is to complete the first steps of DNA analysis for a researcher. 
 It takes in a file of DNA sequences, analyzes all of the sequences in the file, and then writes a new file with that information.
 
